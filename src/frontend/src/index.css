@@ -1,0 +1,198 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --font-display: "Space Grotesk";
+    --font-body: "DM Sans";
+    --font-mono: "JetBrains Mono";
+    --radius: 0.625rem;
+
+    /* Engineering-notebook paper: cool off-white with faint blueprint grid */
+    --background: 0.975 0.006 250;
+    --foreground: 0.19 0.02 265;
+    --card: 1.0 0.002 250;
+    --card-foreground: 0.19 0.02 265;
+    --popover: 1.0 0.002 250;
+    --popover-foreground: 0.19 0.02 265;
+
+    /* Electric indigo — the mathematical accent */
+    --primary: 0.48 0.2 275;
+    --primary-foreground: 0.985 0.005 275;
+
+    --secondary: 0.94 0.012 250;
+    --secondary-foreground: 0.28 0.02 265;
+    --muted: 0.945 0.01 250;
+    --muted-foreground: 0.5 0.015 260;
+
+    /* Cyan-teal secondary accent for focus/active states */
+    --accent: 0.62 0.16 200;
+    --accent-foreground: 0.985 0.005 200;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.985 0.005 25;
+
+    --success: 0.55 0.15 155;
+    --success-foreground: 0.985 0.005 155;
+    --warning: 0.72 0.15 80;
+    --warning-foreground: 0.2 0.02 80;
+
+    --border: 0.9 0.01 250;
+    --input: 0.9 0.01 250;
+    --ring: 0.48 0.2 275;
+
+    --chart-1: 0.48 0.2 275;
+    --chart-2: 0.62 0.16 200;
+    --chart-3: 0.55 0.15 155;
+    --chart-4: 0.72 0.15 80;
+    --chart-5: 0.55 0.22 25;
+
+    --sidebar: 0.985 0.005 250;
+    --sidebar-foreground: 0.19 0.02 265;
+    --sidebar-primary: 0.48 0.2 275;
+    --sidebar-primary-foreground: 0.985 0.005 275;
+    --sidebar-accent: 0.945 0.01 250;
+    --sidebar-accent-foreground: 0.28 0.02 265;
+    --sidebar-border: 0.9 0.01 250;
+    --sidebar-ring: 0.48 0.2 275;
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.5 0.2 275),
+      oklch(0.56 0.17 250)
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      oklch(0.99 0.004 250),
+      oklch(0.965 0.008 250)
+    );
+    --grid-line: oklch(0.48 0.2 275 / 0.06);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 0.16 0.018 265;
+    --foreground: 0.94 0.008 250;
+    --card: 0.2 0.02 265;
+    --card-foreground: 0.94 0.008 250;
+    --popover: 0.22 0.022 265;
+    --popover-foreground: 0.94 0.008 250;
+
+    --primary: 0.7 0.17 275;
+    --primary-foreground: 0.16 0.018 275;
+
+    --secondary: 0.24 0.022 265;
+    --secondary-foreground: 0.85 0.008 250;
+    --muted: 0.24 0.022 265;
+    --muted-foreground: 0.6 0.012 255;
+
+    --accent: 0.72 0.14 200;
+    --accent-foreground: 0.16 0.018 200;
+
+    --destructive: 0.65 0.19 22;
+    --destructive-foreground: 0.16 0.018 22;
+
+    --success: 0.68 0.15 155;
+    --success-foreground: 0.16 0.018 155;
+    --warning: 0.78 0.14 80;
+    --warning-foreground: 0.16 0.018 80;
+
+    --border: 0.3 0.022 265;
+    --input: 0.3 0.022 265;
+    --ring: 0.7 0.17 275;
+
+    --chart-1: 0.7 0.17 275;
+    --chart-2: 0.72 0.14 200;
+    --chart-3: 0.68 0.15 155;
+    --chart-4: 0.78 0.14 80;
+    --chart-5: 0.65 0.19 22;
+
+    --sidebar: 0.2 0.02 265;
+    --sidebar-foreground: 0.94 0.008 250;
+    --sidebar-primary: 0.7 0.17 275;
+    --sidebar-primary-foreground: 0.16 0.018 275;
+    --sidebar-accent: 0.24 0.022 265;
+    --sidebar-accent-foreground: 0.85 0.008 250;
+    --sidebar-border: 0.3 0.022 265;
+    --sidebar-ring: 0.7 0.17 275;
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.66 0.18 275),
+      oklch(0.7 0.15 250)
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      oklch(0.18 0.02 265),
+      oklch(0.155 0.018 265)
+    );
+    --grid-line: oklch(0.7 0.17 275 / 0.08);
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  .font-tabular {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+  }
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+  .bg-gradient-subtle {
+    background-image: var(--gradient-subtle);
+  }
+  .bg-blueprint-grid {
+    background-image: linear-gradient(
+        to right,
+        var(--grid-line) 1px,
+        transparent 1px
+      ), linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  .label-caps {
+    @apply text-xs font-semibold uppercase tracking-widest text-muted-foreground;
+  }
+  .matrix-bracket {
+    @apply relative px-3;
+  }
+  .matrix-bracket::before,
+  .matrix-bracket::after {
+    content: "";
+    @apply absolute top-0 bottom-0 w-2 border-border;
+  }
+  .matrix-bracket::before {
+    @apply left-0 border-l-2 border-y-2 rounded-l-sm;
+  }
+  .matrix-bracket::after {
+    @apply right-0 border-r-2 border-y-2 rounded-r-sm;
+  }
+}

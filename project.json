@@ -1,0 +1,19 @@
+{
+  "overview": "A linear algebra toolkit for entering matrices and vectors, running core matrix operations, and fitting linear and lasso regression models.",
+  "features": [
+    "Enter matrices and vectors and run core matrix operations",
+    "Fit a lasso regression model with a chosen regularization strength",
+    "Worked regression demo on a small hardcoded dataset with 4-dimensional inputs",
+    "Compare an ordinary linear fit with lasso fits across several regularization values",
+    "Reference of supported operations with worked examples"
+  ],
+  "category": "productivity",
+  "tags": [
+    "math",
+    "linear-algebra",
+    "regression",
+    "education",
+    "calculator"
+  ],
+  "last_updated": "2026-11-18T21:35:30.037Z"
+}

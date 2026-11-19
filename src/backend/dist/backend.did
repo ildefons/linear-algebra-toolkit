@@ -1,0 +1,106 @@
+type Vector = vec Entry;
+type Value = 
+ variant {
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "nat": nat;
+   "null";
+   "text": text;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type Result__1 = 
+ variant {
+   err: Error;
+   ok;
+ };
+type Result = 
+ record {
+   hasMore: bool;
+   rows: vec vec Cell;
+ };
+type RegressionFit = 
+ record {
+   coefficients: Vector;
+   converged: bool;
+   intercept: Entry;
+   iterations: nat;
+   residualSumOfSquares: Entry;
+ };
+type Operation = 
+ variant {
+   add;
+   determinant;
+   inverse;
+   lassoRegression;
+   multiply;
+   rank;
+   scalarMultiply;
+   solve;
+   subtract;
+   trace;
+   transpose;
+ };
+type Matrix = vec vec Entry;
+type Error = 
+ variant {
+   AmbiguousAttribute: record {
+                         field: text;
+                         sources: vec text;
+                       };
+   FrontendOriginMismatch: record {
+                             expected: vec text;
+                             got: text;
+                           };
+   FrontendOriginsNotConfigured;
+   MalformedCandid;
+   MissingField: text;
+   MixedSsoSources: record {
+                      otherKeys: vec text;
+                      ssoKeys: vec text;
+                    };
+   NoAttributes;
+   Stale: record {ageNs: nat;};
+   UnknownNonce;
+   UntrustedSsoSource: record {domain: text;};
+ };
+type Entry = float64;
+type Cell = 
+ record {
+   name: text;
+   value: Value;
+ };
+type CalcResult = 
+ variant {
+   error: text;
+   matrix: Matrix;
+   regression: RegressionFit;
+   scalar: Entry;
+ };
+type CalcRequest = 
+ record {
+   lambda: opt Entry;
+   matrix: Matrix;
+   matrixB: opt Matrix;
+   operation: Operation;
+   scalar: opt Entry;
+   vector: opt Vector;
+ };
+service : {
+  _initialize_access_control: () -> ();
+  _internet_identity_sign_in_finish: () -> (Result__1);
+  _internet_identity_sign_in_start: () -> (blob);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  /// Run a linear algebra calculation and return its result.
+  calculate: (request: CalcRequest) -> (CalcResult) query;
+  execute: (qJson: text) -> (Result) query;
+  getApiDoc: () -> (text) query;
+  getCallerUserRole: () -> (UserRole) query;
+  isCallerAdmin: () -> (bool) query;
+  schema: () -> (text) query;
+}
